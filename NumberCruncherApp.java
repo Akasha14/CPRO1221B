@@ -3,49 +3,48 @@ import java.util.Arrays;
 public class NumberCruncherApp {
     public static void main(String[] args) {
 
-        var numbers = new int[11];
+        var nums = new int[11];
         int total = 0;
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = (int) (Math.random() * 51); // 0 to 50
-            total += numbers[i];
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = (int) (Math.random() * 101); // 0 to 100
+            total += nums[i];
         }
-        Arrays.sort(numbers);
-        printArray(numbers);
+        Arrays.sort(nums);
+        printArray(nums);
 
-        // Calculate average (mean)
-        double mean = (double) total / numbers.length;
+        // get average
+        double ave = (double) total / nums.length;
 
-        // Calculate median
+        // get median
         double median;
-        median = numbers[numbers.length / 2];
+        median = nums[nums.length / 2];
 
-        // Calculate standard deviation
-        double standardDeviation = calculateStandardDeviation(numbers);
+        // get standard deviation
+        double standardDeviation = getStandardDeviation(nums);
 
         // Print results
         System.out.printf("Total: %d\n", total);
-        System.out.printf("Count: %d\n", numbers.length);
-        System.out.printf("Average: %.2f\n", mean);
+        System.out.printf("Count: %d\n", nums.length);
+        System.out.printf("Average: %.2f\n", ave);
         System.out.printf("Median: %.2f\n", median);
         System.out.printf("Standard Deviation: %.2f\n", standardDeviation);
     }
 
-    public static void printArray(int[] x) {
-        for (int i = 0; i < x.length; i++) {
-            System.out.printf("Element # %d is %d\n", i, x[i]);
-        }
-    }
-
-    public static double calculateStandardDeviation(int[] array) {
+    public static double getStandardDeviation(int[] array) {
         double sum = 0.0;
         for (int num : array) {
             sum += num;
         }
-        double mean = sum / array.length;
+        double ave = sum / array.length;
         double standardDeviation = 0.0;
         for (int num : array) {
-            standardDeviation += Math.pow(num - mean, 2);
+            standardDeviation += Math.pow(num - ave, 2);
         }
         return Math.sqrt(standardDeviation / array.length);
+    }
+    public static void printArray(int[] x) {
+        for (int i = 0; i < x.length; i++) {
+            System.out.printf("Element # %d is %d\n", i, x[i]);
+        }
     }
 }
